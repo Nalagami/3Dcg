@@ -1,0 +1,14 @@
+D:/OpenGL/lib/glew32d.lib
+D:/OpenGL/bin/glew32d.dll
+D:/OpenGL/lib/libglew32d.lib
+D:/OpenGL/bin/glewinfo.exe
+D:/OpenGL/bin/visualinfo.exe
+D:/OpenGL/lib/pkgconfig/glew.pc
+D:/OpenGL/lib/glew32d.pdb
+D:/OpenGL/include/GL/wglew.h
+D:/OpenGL/include/GL/glew.h
+D:/OpenGL/include/GL/glxew.h
+D:/OpenGL/lib/cmake/glew/glew-targets.cmake
+D:/OpenGL/lib/cmake/glew/glew-targets-debug.cmake
+D:/OpenGL/lib/cmake/glew/glew-config.cmake
+D:/OpenGL/lib/cmake/glew/CopyImportedTargetProperties.cmake

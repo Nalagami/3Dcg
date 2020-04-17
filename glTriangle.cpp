@@ -1,9 +1,11 @@
-#include <GL/freeglut.h>
+#include "myGlsl.h"
 
 //関数のプロトタイプ宣言
 void init();							//初期化関数　背景色を指定
 void display();
 void drawTriangle();
+//シェーダ・プログラム名
+GLuint shaderProg;
 
 int main(int argc, char** argv)
 {
@@ -14,9 +16,10 @@ int main(int argc, char** argv)
 	glutCreateWindow("GL_Triangle");	//ウィンドウ作成
 	glutDisplayFunc(display);			//表示
 	init();								//初期設定
+	initGlsl(&shaderProg, "triangle.vert");	//頂点シェーダ
 
 	glutMainLoop();						//イベント処理ループ
-
+	glDeleteProgram(shaderProg);		//リソースの開放
 	return 0;
 }
 
@@ -28,7 +31,10 @@ void init(void)
 void display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);		//カラーバッファーのクリア
-	drawTriangle();						//描画
+	//描画
+	glUseProgram(shaderProg);			//シェーダ・プログラムの適用
+	drawTriangle();						//図形の描画
+	glUseProgram(0);					//シェーダ・プログラムの適用を解除
 	glFlush();							//終了
 }
 
