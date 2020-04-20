@@ -16,8 +16,8 @@ void readShaderCompile(GLuint shader, const char* file)
 	GLint compiled;
 
 	//ファイルを開く
-	fp = fopen(file, "rb");
-	if (!fp) std::cout << "ファイルを開くことができません" << file << std::endl;
+	//fp = fopen(file, "rb");
+	if ((fopen_s(&fp, file, "rb"))) std::cout << "ファイルを開くことができません" << file << std::endl;
 
 	//ファイルの末尾に移動し、現在位置を得る
 	fseek(fp, 0, SEEK_END);
@@ -77,9 +77,70 @@ void link(GLuint prog)
 	}
 }
 
+//頂点シェーダのみの場合
 void initGlsl(GLuint* program, const char* vertexFile)
 {
 	//glewの初期化
 	GLenum err = glewInit();
-	if(err != GLEW_OK) std::cout<<Error:
+	if (err != GLEW_OK) std::cout << "Error:" << glewGetErrorString(err) << std::endl;
+	
+	//GPU、OpenGL情報
+	std::cout << "VENDOR=" << glGetString(GL_VENDOR) << std::endl;
+	std::cout << "GPU=" << glGetString(GL_RENDERER) << std::endl;
+	std::cout << "OpenGL=" << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLSL=" << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+	
+	//シェーダオブジェクトの作成
+	vertexshader = glCreateShader(GL_VERTEX_SHADER);
+
+	//シェーダーの読み込みろコンパイル
+	readShaderCompile(vertexshader, vertexFile);
+
+	//シェーダプログラムの作成
+	*program = glCreateProgram();
+
+	//シェーダ部ジェクトをシェーダプログラムに関連付ける
+	glAttachShader(*program, vertexshader);
+
+	//シェーダオブジェクトの削除
+	glDeleteShader(vertexshader);
+
+	//シェーダプログラムのリンク
+	link(*program);
+}
+
+//フラグメントシェーダがある場合
+void initGlsl(GLuint* program, const char* vertexFile, const char* fragmentFile)
+{
+	//glewの初期化
+	GLenum err = glewInit();
+	if (err != GLEW_OK) std::cout << "Error:" << glewGetErrorString(err) << std::endl;
+
+	//GPU、OpenGL情報
+	std::cout << "VENDOR=" << glGetString(GL_VENDOR) << std::endl;
+	std::cout << "GPU=" << glGetString(GL_RENDERER) << std::endl;
+	std::cout << "OpenGL=" << glGetString(GL_VERSION) << std::endl;
+	std::cout << "GLSL=" << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+
+	//シェーダオブジェクトの作成
+	vertexshader = glCreateShader(GL_VERTEX_SHADER);
+	fragmentshader = glCreateShader(GL_SHADING_LANGUAGE_VERSION);
+
+	//シェーダーの読み込みろコンパイル
+	readShaderCompile(vertexshader, vertexFile);
+	readShaderCompile(fragmentshader, fragmentFile);
+
+	//シェーダプログラムの作成
+	*program = glCreateProgram();
+
+	//シェーダ部ジェクトをシェーダプログラムに関連付ける
+	glAttachShader(*program, vertexshader);
+	glAttachShader(*program, fragmentshader);
+
+	//シェーダオブジェクトの削除
+	glDeleteShader(vertexshader);
+	glDeleteShader(fragmentshader);
+
+	//シェーダプログラムのリンク
+	link(*program);
 }

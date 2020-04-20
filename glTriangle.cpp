@@ -41,7 +41,7 @@ void display(void)
 void drawTriangle(void)
 {
 	glLineWidth(10.0);					//線幅
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);	//モード
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);	//モード
 	//三角形の描画
 	glBegin(GL_TRIANGLES);
 	glColor3f(1.0, 0.0, 0.0);	//赤の頂点

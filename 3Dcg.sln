@@ -5,6 +5,11 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3Dcg", "3Dcg.vcxproj", "{F61D9D79-53CF-49CE-9508-7EC868F12AE4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{17C0AF6F-67AE-4815-A3C0-AA4E562E6396}"
+	ProjectSection(SolutionItems) = preProject
+		glew-2.1.0\bin\Release\x64\glew32.dll = glew-2.1.0\bin\Release\x64\glew32.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
