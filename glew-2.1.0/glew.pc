@@ -1,6 +1,6 @@
-prefix=D:/OpenGL
+prefix=C:/Users/cg194/Documents/practice/OpenGL/3Dcg/glew-2.1.0/build/cmake/out/install/x64-Debug
 exec_prefix=${prefix}
-libdir=D:/OpenGL/lib
+libdir=C:/Users/cg194/Documents/practice/OpenGL/3Dcg/glew-2.1.0/build/cmake/out/install/x64-Debug/lib
 includedir=${prefix}/include
 
 Name: glew
